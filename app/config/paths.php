@@ -1,4 +1,4 @@
 <?php
-      define('URL','http://localhost/engine/');
+      define('URL','http://localhost/mvc/');
         define('LIBS','core/');
 ?>
