@@ -10,9 +10,9 @@ class View{
                 require 'app/views/'.$name.'.php';
             }  else
             {
-                require 'app/views/header.php';
-                require 'app/views/'.$name.'.php';
-                require 'app/views/footer.php';
+                require 'views/header.php';
+				require 'app/views/'.$name.'.php';
+                require 'views/footer.php';
             }
        }
 }

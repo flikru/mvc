@@ -65,7 +65,7 @@ form input, form select {
 
 form input[type=submit]:hover {
     cursor: pointer;
-    background: silver;
+    background: 0099cc;
 }
 
 

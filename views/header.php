@@ -1,15 +1,15 @@
 <html>
 <head>
     <title>Test</title>
-    <link rel="stylesheet" href="<?php echo URL; ?>app/public/css/default.css">
-    <script type="app/text/javascript" src="<?php echo URL; ?>app/public/js/jquery.js"></script>
-    <script type="app/text/javascript" src="<?php echo URL; ?>app/public/js/custom.js"></script>
+    <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css">
+    <script type="app/text/javascript" src="<?php echo URL; ?>public/js/jquery.js"></script>
+    <script type="app/text/javascript" src="<?php echo URL; ?>public/js/custom.js"></script>
     <?php
     if (isset($this->js))
     {
         foreach ($this->js as $js)
         {
-            echo '<script type="text/javascript" src="'.URL.'views/'.$js.'"></script>';
+            echo '<script type="text/javascript" src="'.URL.'app/views/'.$js.'"></script>';
         }
     }
     ?>
