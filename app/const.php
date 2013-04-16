@@ -7,7 +7,7 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 
 //path
-define('URL','http://localhost/mvc/');
+define('URL','http://localhost/engine/');
 define('LIBS','core/');
 
 //all

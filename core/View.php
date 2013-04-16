@@ -11,7 +11,8 @@ class View{
             }  else
             {
                 require 'views/header.php';
-				require 'app/views/'.$name.'.php';
+                require 'app/'.$name.'.php';
+				//require 'app/modules/login/views/'.$name.'.php';
                 require 'views/footer.php';
             }
        }

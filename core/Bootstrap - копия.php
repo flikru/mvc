@@ -5,7 +5,6 @@ class Bootstrap {
         $url = rtrim($url, '/');
         $url = explode('/', $url);
 
-
         if (empty($url[0])){
             require 'app/controllers/index.php';
             $controller = new Index();
@@ -13,17 +12,12 @@ class Bootstrap {
             return false;
         }
 
-        $fileLoad = 'app/controllers/' . $url[0] . '.php';
-        $fileModule = 'app/modules/'.$url[0].'/controllers/' . $url[0] . '.php';
-        if (file_exists($fileLoad)) {
-            require $fileLoad;
+        $file = 'app/controllers/' . $url[0] . '.php';
+        if (file_exists($file)) {
+            require $file;
+        } else {
+            $this->error();
         }
-            else
-        if(file_exists($fileModule))
-        {
-            require $fileModule;
-        }
-        else $this->error();
 
                 $controller = new $url[0];
                 $controller->loadModel($url[0]);
