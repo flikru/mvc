@@ -18,7 +18,7 @@ class User extends Controller {
 	
 	public function index(){
 		$this->view->userList = $this->model->userList();
-		$this->view->render('views/user/index');
+		$this->view->render('user/index');
 	}
 	
 	public function create(){
@@ -33,7 +33,7 @@ class User extends Controller {
 	public function edit($id) 
 	{
 		$this->view->user = $this->model->userSingleList($id);
-		$this->view->render('views/user/edit');
+		$this->view->render('user/edit');
 	}
 	
 	public function editSave($id)

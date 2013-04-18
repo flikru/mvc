@@ -11,8 +11,10 @@ class View{
             }  else
             {
                 require 'views/header.php';
-                require 'app/'.$name.'.php';
-				//require 'app/modules/login/views/'.$name.'.php';
+                if(Bootstrap::$useModule==null)
+                require 'app/views/'.$name.'.php';
+                else
+				require 'app/modules/'.Bootstrap::$useModule.'/views/'.$name.'.php';
                 require 'views/footer.php';
             }
        }

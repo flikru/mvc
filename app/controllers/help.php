@@ -6,14 +6,13 @@ class Help extends Controller{
      }
 
    function index(){
-        $this->view->render('views/help/index');
+        $this->view->render('/help/index');
    }
     public function other($arg = false){
 
 
         require 'app/models/help_model.php';
         $model = new Help_Model();
-        $this->view->blah = $model->blah();
 
     }
 

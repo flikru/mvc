@@ -5,19 +5,17 @@ class Controller{
     }
 
     public function loadModel($name){
+
+        if(Bootstrap::$useModule==null)
         $pathL = 'app/models/'.$name.'_model.php';
-        $pathM = 'app/modules/'.$name.'/models/'.$name.'_model.php';
+        else
+        $pathL = 'app/modules/'.Bootstrap::$useModule.'/models/'.$name.'_model.php';
         if(file_exists($pathL)){
             require $pathL;
             $modelName=$name.'_Model';
             $this->model = new $modelName;
         }
-        else if(file_exists($pathM))
-        {
-            require $pathM;
-            $modelName=$name.'_Model';
-            $this->model = new $modelName;
-        }
+
     }
 }
 ?>

@@ -6,7 +6,7 @@
         }
         function index(){
             $this->view->msg='This page doesnt exist';
-            $this->view->render('views/error/index');
+            $this->view->render('error/index');
         }
 
     }

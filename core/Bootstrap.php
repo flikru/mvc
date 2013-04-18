@@ -1,9 +1,17 @@
 <?php
 class Bootstrap {
+    public static $db;
+    public static $ok=false;
+    public static $useModule=null;
+
     function __construct() {
         $url = isset($_GET['url']) ? $_GET['url'] : null;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
+
+        $this->_config = require 'config.php';
+        $this->modules=$this->_config['Modules'];
+        self::$db=$this->_config['DB'];
 
 
         if (empty($url[0])){
@@ -14,16 +22,27 @@ class Bootstrap {
         }
 
         $fileLoad = 'app/controllers/' . $url[0] . '.php';
-        $fileModule = 'app/modules/'.$url[0].'/controllers/' . $url[0] . '.php';
         if (file_exists($fileLoad)) {
+            self::$ok=true;
             require $fileLoad;
         }
             else
-        if(file_exists($fileModule))
+        foreach($this->modules as $item1)
+            {
+                $fileModule = 'app/modules/'.$item1.'/controllers/' . $url[0] . '.php';
+                if(file_exists($fileModule))
+                {
+                    self::$useModule=$item1;
+                    self::$ok=true;
+                    require $fileModule;
+                    break;
+                }
+            }
+        if(self::$ok==false)
         {
-            require $fileModule;
+            $this->error();
+        exit;
         }
-        else $this->error();
 
                 $controller = new $url[0];
                 $controller->loadModel($url[0]);

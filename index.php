@@ -1,5 +1,4 @@
 <?php
-	require 'app/const.php';	
 	require 'core/Controller.php';
 	require 'core/Database.php';
 	require 'core/Hash.php';
@@ -9,4 +8,5 @@
 	require 'core/View.php';
 	require 'core/Bootstrap.php';
     $app = new Bootstrap();
+
 ?>

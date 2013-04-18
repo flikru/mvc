@@ -2,7 +2,15 @@
 class Model {
 
         function __construct() {
-            $this->db = new Database(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
+    $db=Bootstrap::$db;
+
+            $this->db = new Database(
+                $db['DB_TYPE'],
+                $db['DB_HOST'],
+                $db['DB_NAME'],
+                $db['DB_USER'],
+                $db['DB_PASS']
+            );
             }
 }
 ?>

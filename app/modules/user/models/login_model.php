@@ -13,7 +13,7 @@ class Login_Model extends Model
 				login = :login AND password = :password");
         $sth->execute(array(
             ':login' => $_POST['login'],
-            ':password' => Hash::create('md5', $_POST['password'], HASH_PASSWORD_KEY)
+            ':password' => md5($_POST['password'])
         ));
 
         $data = $sth->fetch();
@@ -30,6 +30,6 @@ class Login_Model extends Model
         }
 
     }
-
+       //':password' => Hash::create('md5', $_POST['password'], HASH_PASSWORD_KEY)
 }
 ?>
