@@ -3,6 +3,7 @@ class Bootstrap {
     public static $db;
     public static $ok=false;
     public static $useModule=null;
+    public static $_config;
 
     function __construct() {
         $url = isset($_GET['url']) ? $_GET['url'] : null;
@@ -12,16 +13,17 @@ class Bootstrap {
         $this->_config = require 'config.php';
         $this->modules=$this->_config['Modules'];
         self::$db=$this->_config['DB'];
+        $defaultController=$this->_config['defaultController'];
 
 
         if (empty($url[0])){
-            require 'app/controllers/index.php';
+            require 'app/controllers/'.$defaultController.'Controller.php';
             $controller = new Index();
             $controller->index();
             return false;
         }
 
-        $fileLoad = 'app/controllers/' . $url[0] . '.php';
+        $fileLoad = 'app/controllers/' . $url[0] . 'Controller.php';
         if (file_exists($fileLoad)) {
             self::$ok=true;
             require $fileLoad;
@@ -29,7 +31,7 @@ class Bootstrap {
             else
         foreach($this->modules as $item1)
             {
-                $fileModule = 'app/modules/'.$item1.'/controllers/' . $url[0] . '.php';
+                $fileModule = 'app/modules/'.$item1.'/controllers/' . $url[0] . 'Controller.php';
                 if(file_exists($fileModule))
                 {
                     self::$useModule=$item1;
@@ -37,6 +39,7 @@ class Bootstrap {
                     require $fileModule;
                     break;
                 }
+
             }
         if(self::$ok==false)
         {
@@ -69,7 +72,7 @@ class Bootstrap {
     }
 
     function error() {
-        require 'app/controllers/error.php';
+        require 'app/controllers/errorController.php';
         $controller = new Error();
         $controller->index();
         return false;

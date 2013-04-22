@@ -1,7 +1,7 @@
 <?php
 class Controller{
     function __construct(){
-        $this->view = new View();
+
     }
 
     public function loadModel($name){
@@ -15,7 +15,22 @@ class Controller{
             $modelName=$name.'_Model';
             $this->model = new $modelName;
         }
+    }
 
+    public function render($name, $noInclude = false)
+    {
+        if($noInclude == true){
+            require 'app/views/'.$name.'.php';
+        }  else
+        {
+            require 'views/header.php';
+            if(Bootstrap::$useModule==null)
+                require 'app/views/'.$name.'.php';
+            else
+                require 'app/modules/'.Bootstrap::$useModule.'/views/'.$name.'.php';
+
+            require 'views/footer.php';
+        }
     }
 }
 ?>
