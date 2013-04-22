@@ -1,8 +1,8 @@
-<h1>User: Edit</h1>
+<h1>Редактирование профиля</h1>
 <form method="post" action="<?php echo URL;?>user/editSave/<?php echo $this->user['id']; ?>">
-	<label>Login</label><input type="text" name="login" value="<?php echo $this->user['login']; ?>" /><br>
-	<label>Password</label><input type="text" name="password"><br>
-	<label>Role</label>
+	<label>Имя</label><input type="text" name="login" value="<?php echo $this->user['login']; ?>" /><br>
+	<label>Пароль</label><input type="text" name="password"><br>
+	<label>Группа</label>
 		<select name="role">
 			<option value="default" <?php if($this->user['role'] == 'default') echo 'selected'; ?>>Default</option>
 			<option value="admin" <?php if($this->user['role'] == 'admin') echo 'selected'; ?>>Admin</option>

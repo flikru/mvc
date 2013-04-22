@@ -1,2 +1,2 @@
-<h1>Index</h1>
-This is the main page welcome!
+<h1>Главная страница</h1>
+Добро пожаловать!

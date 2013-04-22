@@ -4,8 +4,11 @@
         function __construct(){
             parent::__construct();
         }
-        function index(){
-            $this->msg='This page doesnt exist';
+        function index($error,$type){
+            switch($type){
+                case 'controller': $this->msg='Контроллер <b>\'' .$error. '\'</b> не существует!';
+                case 'method': $this->msg='Метод <b>\'' .$error. '\'</b> не существует!';
+            }
             $this->render('error/index');
         }
 

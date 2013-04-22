@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Test</title>
+    <title>MVC</title>
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css">
     <script type="app/text/javascript" src="<?php echo URL; ?>public/js/jquery.js"></script>
     <script type="app/text/javascript" src="<?php echo URL; ?>public/js/custom.js"></script>
@@ -21,21 +21,21 @@
 <div id="header">
 
         <?php if (Session::get('loggedIn') == false):?>
-    <a href="<?php echo URL; ?>index">Index</a>
-    <a href="<?php echo URL; ?>help">Help</a>
+    <a href="<?php echo URL; ?>index">Главная</a>
+    <a href="<?php echo URL; ?>help">Помощь</a>
         <?php endif; ?>
         <?php if (Session::get('loggedIn') == true):?>
-    <a href="<?php echo URL; ?>dashboard">Dashboard</a>
+    <a href="<?php echo URL; ?>dashboard">Сообщения</a>
 
         <?php if (Session::get('role') == 'owner'):?>
-    <a href="<?php echo URL; ?>user">Users</a>
+    <a href="<?php echo URL; ?>user">Пользователи</a>
         <?php
     endif;
     ?>
 
-    <a href="<?php echo URL; ?>dashboard/logout">Logout</a>
+    <a href="<?php echo URL; ?>dashboard/logout">Выйти</a>
     <?php else: ?>
-    <a href="<?php echo URL; ?>login">Login</a>
+    <a href="<?php echo URL; ?>login">Войти</a>
     <?php endif; ?>
 </div>
 

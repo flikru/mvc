@@ -1,3 +1,4 @@
+<meta charset='utf8'>
 <?php
 class Bootstrap {
     public static $db;
@@ -43,8 +44,8 @@ class Bootstrap {
             }
         if(self::$ok==false)
         {
-            $this->error();
-        exit;
+            $this->error($url[0],'controller');
+            exit;
         }
 
                 $controller = new $url[0];
@@ -61,7 +62,7 @@ class Bootstrap {
                 if (method_exists($controller, $url[1])) {
                     $controller->{$url[1]}();
                 } else {
-                    $this->error();
+                    $this->error($url[1],'method');
                 }
             } else {
                 $controller->index();
@@ -71,10 +72,10 @@ class Bootstrap {
 
     }
 
-    function error() {
+    function error($error,$type) {
         require 'app/controllers/errorController.php';
         $controller = new Error();
-        $controller->index();
+        $controller->index($error,$type);
         return false;
     }
 

@@ -1,7 +1,7 @@
 </div>
 
-    <div id="footer">
-        (C)footer
+    <div id="footer" align="right">
+        Все права не защищены. &copy;flik
     </div>
 
 </body>
