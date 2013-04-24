@@ -56,7 +56,6 @@ class Upload {
 
     function uploads($FILES) {
         $this->FILES = $FILES;
-
         if (!is_array($this->FILES['name'])) {
             return $this->uploadsOneFile();
         } else {
@@ -76,7 +75,6 @@ class Upload {
 
         $result = $this->upload($this->FILES['tmp_name'], $this->FILES['name']);
         if ($result != false) {
-            $this->FILES['nameTranslit'] = $result;
             return true;
         }
         return false;
@@ -92,7 +90,7 @@ class Upload {
                 $result = $this->upload($this->FILES['tmp_name'][$i], $this->FILES['name'][$i]);
 
                 if ($result != false) {
-                    $this->FILES['nameTranslit'][$i] = $result;
+
                 } else {
                     $this->errors[] = $this->FILES['name'];
                 }
@@ -108,8 +106,7 @@ class Upload {
      * проверяем, разрешен ли данный файл к загрузке
      */
     function typeChecking($fileName) {
-        preg_match("#([\w()-_]+)\.([\w]{1,4})$#i", $fileName, $arrayNameFiles);
-        $nameEnd = strtolower($arrayNameFiles[2]);
+        $nameEnd = pathinfo($fileName, PATHINFO_EXTENSION);
         if (in_array($nameEnd, $this->allowedType)) {
             return true;
         } else {
@@ -122,8 +119,7 @@ class Upload {
      * ищет в каталоге файлы с таким же названием дописывает номер(равный количеству файлов с таким названием) в конец
      */
     function substitute($name) {
-        preg_match("#([\w()-_]+)\.([\w]{1,4})#i", $name, $arrayNameFiles);
-        $nameEnd = $arrayNameFiles[2];
+        $nameEnd = pathinfo($name, PATHINFO_EXTENSION);
         return mt_rand().'.'.$nameEnd;
     }
 
@@ -139,40 +135,6 @@ class Upload {
      */
     public function errors() {
         return $this->errors;
-    }
-
-    /**
-     * переводим текст в транслит
-     * @param $text
-     */
-    public static function translit($text) {
-        $rus = array(
-            "а", "б", "в",
-            "г", "ґ", "д", "е", "ё", "ж",
-            "з", "и", "й", "к", "л", "м",
-            "н", "о", "п", "р", "с", "т",
-            "у", "ф", "х", "ц", "ч", "ш",
-            "щ", "ы", "э", "ю", "я", "ь",
-            "ъ", "і", "ї", "є", "А", "Б",
-            "В", "Г", "ґ", "Д", "Е", "Ё",
-            "Ж", "З", "И", "Й", "К", "Л",
-            "М", "Н", "О", "П", "Р", "С",
-            "Т", "У", "Ф", "Х", "Ц", "Ч",
-            "Ш", "Щ", "Ы", "Э", "Ю", "Я",
-            "Ь", "Ъ", "І", "Ї", "Є", " ");
-        $lat = array(
-            "a", "b", "v",
-            "g", "g", "d", "e", "e", "zh", "z", "i",
-            "j", "k", "l", "m", "n", "o", "p", "r",
-            "s", "t", "u", "f", "h", "c", "ch", "sh",
-            "sh'", "y", "e", "yu", "ya", "_", "_", "i",
-            "i", "e", "A", "B", "V", "G", "G", "D",
-            "E", "E", "ZH", "Z", "I", "J", "K", "L",
-            "M", "N", "O", "P", "R", "S", "T", "U",
-            "F", "H", "C", "CH", "SH", "SH'", "Y", "E",
-            "YU", "YA", "_", "_", "I", "I", "E", "_");
-        $text = str_replace($rus, $lat, $text);
-        return(preg_replace("#[^a-z0-9._-]#i", "", $text));
     }
 
 }
