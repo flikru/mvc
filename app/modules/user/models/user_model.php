@@ -13,9 +13,8 @@ class User_Model extends Model
 
     public function userSingleList($id)
     {
-        $sth = $this->db->prepare('SELECT id, login, role FROM users WHERE id = :id');
-        $sth->execute(array(':id' => $id));
-        return $sth->fetch();
+        return $this->db->select('users','id,login,role','id=$id','fetch');
+
     }
 
     public function create($data)
@@ -40,10 +39,7 @@ class User_Model extends Model
 
     public function delete($id)
     {
-        $sth = $this->db->prepare('DELETE FROM users WHERE id = :id');
-        $sth->execute(array(
-            ':id' => $id
-        ));
+        $this->db->delete('users','id='.$id);
     }
 }
 ?>

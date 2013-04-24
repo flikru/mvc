@@ -41,13 +41,15 @@ class Database extends PDO
         $sth->execute();
         }
 
-        public function select($table,$field,$where=null){
+        public function select($table,$field,$where=null,$typeOut='fetchAll'){
             $query="SELECT $field FROM $table";
             if($where!=null)
                 $query.=" WHERE $where";
             $query=$query.';';
             $sth = $this->prepare($query);
             $sth->execute();
+                if($typeOut=='fetch')
+                    return $sth->fetch();
             return $sth->fetchAll();
         }
 
