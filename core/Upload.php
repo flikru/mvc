@@ -13,7 +13,7 @@ class Upload {
         7 => "Файл не был загружен.",
         8 => "Файл не был загружен.");
 
-    function __construct($dir='') {
+    function __construct($dir) {
         self::$dir = $dir;
     }
 
@@ -31,9 +31,20 @@ class Upload {
         }
     }
 
+    function addAllowedType($type) {
+        $allowedType=array('jpg','php');
+        if (is_array($type)) {
+            foreach($type as $value)
+                $allowedType[]=$value;
+            return $allowedType;
+        }
+        else return false;
+    }
+
+
 
     private function upload($tmpName, $name) {
-        $name = $this->substitute(self::translit($name));
+        $name = $this->substitute($name);
 
         if ($this->typeChecking($name))
             if (move_uploaded_file($tmpName, self::$dir . $name)) {
@@ -110,26 +121,11 @@ class Upload {
 
     /**
      * ищет в каталоге файлы с таким же названием дописывает номер(равный количеству файлов с таким названием) в конец
-     * @param $name
      */
     function substitute($name) {
-
-        $files = scandir(self::$dir);
-        unset($files[0]);
-        unset($files[1]);
-
-        $i = 0;
-        $newName = $name;
-
         preg_match("#([\w()-_]+)\.([\w]{1,4})#i", $name, $arrayNameFiles);
-        $nameStart = $arrayNameFiles[1];
         $nameEnd = $arrayNameFiles[2];
-
-        while (in_array($newName, $files)) {
-            $newName = "{$nameStart}({$i}).{$nameEnd}";
-            $i++;
-        }
-        return $newName;
+        return mt_rand().'.'.$nameEnd;
     }
 
     /**
