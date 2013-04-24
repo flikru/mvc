@@ -13,8 +13,7 @@ class User_Model extends Model
 
     public function userSingleList($id)
     {
-        return $this->db->select('users','id,login,role','id=$id','fetch');
-
+        return $this->db->select('users','id,login,role','id='.$id,'fetch');
     }
 
     public function create($data)

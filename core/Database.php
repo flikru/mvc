@@ -41,7 +41,12 @@ class Database extends PDO
         $sth->execute();
         }
 
-        public function select($table,$field,$where=null,$typeOut='fetchAll'){
+        public function select($table,$fields,$where=null,$typeOut='fetchAll'){
+            if(is_array($fields)){
+                $field= '`'.implode('`, `', array_values($fields)).'`';
+            }else
+                $field=$fields;
+
             $query="SELECT $field FROM $table";
             if($where!=null)
                 $query.=" WHERE $where";
@@ -53,6 +58,11 @@ class Database extends PDO
             return $sth->fetchAll();
         }
 
+        /**
+         * Удаление данных из таблицы
+         * @param $table Имя таблицы
+         * @param $where Условие удаляемых данных
+         */
         public function delete($table,$where){
             $query="DELETE FROM $table WHERE $where;";
             $sth = $this->prepare($query);
