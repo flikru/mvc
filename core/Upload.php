@@ -13,7 +13,7 @@ class Upload {
         7 => "Файл не был загружен.",
         8 => "Файл не был загружен.");
 
-    function __construct($dir) {
+    function __construct($dir='') {
         self::$dir = $dir;
     }
 
