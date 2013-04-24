@@ -37,6 +37,7 @@
     <?php else: ?>
     <a href="<?php echo URL; ?>login">Войти</a>
     <?php endif; ?>
+	<a href="<?php echo URL; ?>test">Тест</a>
 </div>
 
 <div id="content">
