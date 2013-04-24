@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>MVC</title>
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css">
@@ -18,15 +18,15 @@
 
 <?php Session::init(); ?>
 
-<div id="header">
-
+<div id='header'>
+	<a href="<?php echo URL; ?>index">Главная</a>
         <?php if (Session::get('loggedIn') == false):?>
-    <a href="<?php echo URL; ?>index">Главная</a>
+    <a href="<?php echo URL; ?>register">Регистрация</a>
     <a href="<?php echo URL; ?>help">Помощь</a>
         <?php endif; ?>
         <?php if (Session::get('loggedIn') == true):?>
     <a href="<?php echo URL; ?>dashboard">Сообщения</a>
-
+    <a href="<?php echo URL; ?>profile">Профиль</a>
         <?php if (Session::get('role') == 'owner'):?>
     <a href="<?php echo URL; ?>user">Пользователи</a>
         <?php
@@ -38,6 +38,9 @@
     <a href="<?php echo URL; ?>login">Войти</a>
     <?php endif; ?>
 	<a href="<?php echo URL; ?>test">Тест</a>
-</div>
+
+    <?php if(isset($_SESSION['login']))echo 'Привет, '.$_SESSION['login'].'!';?>
+
+    </div>
 
 <div id="content">

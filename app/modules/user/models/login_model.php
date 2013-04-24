@@ -9,7 +9,7 @@ class Login_Model extends Model
     public function run()
     {
 
-        $sth = $this->db->prepare("SELECT id, role FROM users WHERE
+        $sth = $this->db->prepare("SELECT id,login, role FROM users WHERE
 				login = :login AND password = :password");
         $sth->execute(array(
             ':login' => $_POST['login'],
@@ -22,6 +22,7 @@ class Login_Model extends Model
         if ($count > 0) {
             // login
             Session::init();
+            Session::set('login',$data['login']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             header('location: ../dashboard');

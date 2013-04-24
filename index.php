@@ -5,6 +5,8 @@
 	require 'core/Module.php';
 	require 'core/Session.php';
 	require 'core/Bootstrap.php';
+    require 'core/Validator.php';
+    require 'core/Upload.php';
     $app = new Bootstrap();
 
 ?>

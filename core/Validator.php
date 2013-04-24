@@ -1,7 +1,7 @@
 <?php
 class Validator{
-    public function Validate($param){
-        $string=clearData($param[0]);
+    public static function Validate($param){
+        $string=self::clearData($param[0]);
         $count=count($param);
 
         for($i=1;$i<$count;$i++){
@@ -13,17 +13,17 @@ class Validator{
             $lengthArr=count($method);
             $call=$method[0];
             if($lengthArr==1)
-                $value = $call($string);
+                $value = self::$call($string);
             if($lengthArr==2)
-                $value = $call($string,$method[1]);
+                $value = self::$call($string,$method[1]);
 
             if($value==false)
             {
-                return $error='Введено не правильно';
+                return false;
                 break;
             }
         }
-        return $string;
+        return true;
     }
 
     public function clearData($data)
