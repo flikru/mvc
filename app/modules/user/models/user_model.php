@@ -8,9 +8,7 @@ class User_Model extends Model
 
     public function userList()
     {
-        $sth = $this->db->prepare('SELECT id, login, role FROM users');
-        $sth->execute();
-        return $sth->fetchAll();
+        return $this->db->select('users','id,login,role');
     }
 
     public function userSingleList($id)

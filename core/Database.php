@@ -41,14 +41,14 @@ class Database extends PDO
         $sth->execute();
         }
 
-        public function select($table,$array,$where=null){
-            $fieldNames = '`'.implode('`, `', array_keys($array)).'`';
-            $query="SELECT $fieldNames FROM $table";
+        public function select($table,$field,$where=null){
+            $query="SELECT $field FROM $table";
             if($where!=null)
-                $query="SELECT $fieldNames FROM $table WHERE $where";
+                $query.=" WHERE $where";
             $query=$query.';';
             $sth = $this->prepare($query);
             $sth->execute();
+            return $sth->fetchAll();
         }
 
         public function delete($table,$where){
