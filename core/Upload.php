@@ -32,11 +32,10 @@ class Upload {
     }
 
     function addAllowedType($type) {
-        $allowedType=array('jpg','php');
         if (is_array($type)) {
             foreach($type as $value)
-                $allowedType[]=$value;
-            return $allowedType;
+                $this->allowedType[]=$value;
+            return $this->allowedType;
         }
         else return false;
     }
