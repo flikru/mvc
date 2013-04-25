@@ -1,18 +1,9 @@
-<h1>Профиль пользователя, <?php echo $_SESSION['login'];?></h1>
-  <style>
-      .sdiv{
-        position:relative;
-      }
-      .snos{
-          left:100;
-          top:-110;
-      }
-  </style>
+<h1>Профиль пользователя, <?php Session::init(); echo $_SESSION['login'];?></h1>
  <table>
 <tr><td>
-    <input type="image" height=110 width=130 src="http://localhost/mvc/upload/<?php if(isset($_SESSION['imgname'])) echo $_SESSION['imgname'];
+    <input type="image" height=110 width=130 src="http://<?php echo $_SERVER['SERVER_ADDR']; ?>/mvc/upload/<?php if(isset($_SESSION['imgname'])) echo $_SESSION['imgname'];
     else
-    echo 'default.jpg'; ;?>">
+    echo 'default.jpg';?>">
     <form action="profile/addAvatar" enctype="multipart/form-data" method="post">
         <input type='file' name='avatarAdd'> <br>
         <input type='submit' value="Отправить">
