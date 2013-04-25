@@ -75,7 +75,7 @@ class Upload {
 
         $result = $this->upload($this->FILES['tmp_name'], $this->FILES['name']);
         if ($result != false) {
-            return true;
+            return $result;
         }
         return false;
     }

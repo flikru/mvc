@@ -24,7 +24,7 @@ class Controller{
         }  else
         {
             require 'views/header.php';
-            if(Bootstrap::$useModule==null)
+            if(Bootstrap::$useModule==null or $name=='error/index')
                 require 'app/views/'.$name.'.php';
             else
                 require 'app/modules/'.Bootstrap::$useModule.'/views/'.$name.'.php';
