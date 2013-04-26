@@ -8,35 +8,29 @@ class Profile_Model extends Model
 
     public function run()
     {
-        $login=$_POST['login'];
-        $password = md5($_POST['password']);
-        $data=$this->db->select('users','id,login,role,avatar','login=\''.$login.'\' AND password = \''.$password.'\'','fetch');
-
-        $count =  count($data);
-        if ($count > 0) {
-            // login
-            Session::init();
-
-            Session::set('role', $data['role']);
-
-            Session::set('loggedIn', true);
-            header('location: ../dashboard');
-        } else {
-            header('location: ../login');
-        }
 
     }
 
+    public function getData(){
+        if($_SESSION['loggedIn']==true){
+            $login = $_SESSION['login'];
+            return $this->db->select('users','id,login,role,avatar,name,family','login=\''.$login.'\'','fetch');
+        }
+    }
+
     public function addAvatar(){
-        Session::init();
         $upload= new Upload('upload/');
         $imgname=$upload->uploads($_FILES['avatarAdd']);
         $login='\''.$_SESSION['login'].'\'';
         $this->db->update('users',array('avatar'=>$imgname), "login = ".$login);
 
-        Session::set('imgname',$imgname);
+    }
+    public function editData(){
+        $name=$_POST['name'];
+        $family=$_POST['family'];
+        $login='\''.$_SESSION['login'].'\'';
+        $this->db->update('users',array('name'=>$name,'family'=>$family), "login = ".$login);
 
-        header('location: ../profile');
     }
 
 }

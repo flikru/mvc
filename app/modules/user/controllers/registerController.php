@@ -17,7 +17,10 @@ class Register extends Controller {
 	}
 
     function add(){
+       if(!empty($_POST))
        $this->model->run();
+        else
+       header('location: ../register');
     }
 
 }

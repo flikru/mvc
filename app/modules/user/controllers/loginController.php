@@ -7,11 +7,12 @@ class Login extends Controller {
 	}
 	
 	function index(){
-		$this->render('login/index');
+        $this->render('login/index');
 	}
 	
 	function run(){
-		$this->model->run();
+	    $this->model->run();
+        header('location: ../dashboard');
 	}
 	
 

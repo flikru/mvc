@@ -39,7 +39,9 @@
     <?php endif; ?>
 	<a href="<?php echo URL; ?>test">Тест</a>
 
-    <?php if(isset($_SESSION['login']))echo 'Привет, '.$_SESSION['login'].'!';?>
+    <?php if(isset($_SESSION['login']))echo 'Привет, '.$_SESSION['login'].'!';
+
+    ?>
 
     </div>
 

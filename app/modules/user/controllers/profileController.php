@@ -14,7 +14,8 @@ class Profile extends Controller {
     }
 	
 	function index(){
-		$this->render('profile/index');
+        $data=$this->model->getData();
+		$this->render('profile/index',$data);
 	}
 	
 	function run(){
@@ -23,11 +24,17 @@ class Profile extends Controller {
 
     function addAvatar()
     {
-        if(isset($_FILES['avatarAdd'])){
+        if(isset($_FILES['avatarAdd']))
+        if(!empty($_FILES['avatarAdd']['name'])){
             $this->model->addAvatar();
-        }
+            header('location: ../profile');
+        }  else header('location: '.URL.'profile');
     }
-	
+
+    public function editData(){
+        $this->model->editData();
+        header('location: ../profile');
+    }
 
 }
 ?>

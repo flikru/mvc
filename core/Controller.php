@@ -1,5 +1,6 @@
 <?php
 class Controller{
+
     function __construct(){
 
     }
@@ -17,8 +18,9 @@ class Controller{
         }
     }
 
-    public function render($name, $noInclude = false)
+    public function render($name,$data=null,$noInclude = false)
     {
+
         if($noInclude == true){
             require 'app/views/'.$name.'.php';
         }  else
