@@ -48,13 +48,11 @@
     <input type = 'submit' value = 'OK'>
 </form>
 
-<table><tr><td><b>ID</td><td><b>Message</td></tr>
+<table><tr><td><b>ID-отправителя</td><td><b>Сообщение</td></tr>
     <?php
-    $i=0;
-    $count=count($data['message'])-2;
-    for($i=$count;$i>=0;$i--)
-    {
-        echo '<tr><td>'.$i.'</td><td>'.$data['message'][$i].'</td></tr>';
-    }
+    $msg=$data['message'];
+    foreach($msg as $item)
+        echo '<tr><td>'.$item['id_who'].'</td><td>'.$item['text'].'</td></tr>';
+
     ?>
 </table>

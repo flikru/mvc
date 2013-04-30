@@ -15,6 +15,8 @@ class Profile extends Controller {
 	
 	function index(){
         $data=$this->model->getData($_SESSION['id']);
+        $msg=$this->model->getMsg($_SESSION['id']);
+        $data['message']=$msg;
 		$this->render('profile/index',$data);
 	}
 	
@@ -42,6 +44,9 @@ class Profile extends Controller {
 
     function show($id){
         $data=$this->model->getData($id);
+        $msg=$this->model->getMsg($id);
+        $data['message']=$msg;
+
         $this->render('profile/indexID',$data);
     }
 
