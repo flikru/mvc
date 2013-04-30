@@ -4,7 +4,6 @@ class Database extends PDO
   public function __construct($DB_TYPE, $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS)
     {
         parent::__construct($DB_TYPE.':host='.$DB_HOST.';dbname='.$DB_NAME, $DB_USER, $DB_PASS);
-        $this->prepare("SET NAMES 'UTF8'");
     }
 
    public function insert($table, $data)
@@ -44,7 +43,7 @@ class Database extends PDO
 
         public function select($table,$fields,$where=null,$typeOut='fetchAll'){
             if(is_array($fields)){
-                $field= '`'.implode('`, `', array_values($fields)).'`';
+                $field= '`'.implode('`, `', array_keys($fields)).'`';
             }else
                 $field=$fields;
 

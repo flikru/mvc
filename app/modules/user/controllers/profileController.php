@@ -14,7 +14,7 @@ class Profile extends Controller {
     }
 	
 	function index(){
-        $data=$this->model->getData();
+        $data=$this->model->getData($_SESSION['id']);
 		$this->render('profile/index',$data);
 	}
 	
@@ -35,6 +35,17 @@ class Profile extends Controller {
         $this->model->editData();
         header('location: ../profile');
     }
+
+    public function addMessage($id){
+        $this->model->addMessage($id);
+    }
+
+    function show($id){
+        $data=$this->model->getData($id);
+        $this->render('profile/indexID',$data);
+    }
+
+
 
 }
 ?>

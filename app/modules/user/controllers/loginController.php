@@ -11,8 +11,13 @@ class Login extends Controller {
 	}
 	
 	function run(){
-	    $this->model->run();
-        header('location: ../dashboard');
+        if(!empty($_POST['login']) and !empty($_POST['password'])){
+            if($this->model->run()==true)
+            header('location: ../dashboard');
+                else
+            header('location: ../login');
+        }
+        else header('location: ../login');
 	}
 	
 

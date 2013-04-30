@@ -1,5 +1,6 @@
 <h1>Профиль пользователя,
     <?php
+    Session::init();
     echo $data['login'];
     ?>
 </h1>
@@ -13,15 +14,10 @@
         else
         echo 'default.jpg';?>">
 
-        <form action="profile/addAvatar" enctype="multipart/form-data" method="post">
-            <input type='file' name='avatarAdd'> <br>
-            <input type='submit' value="Отправить">
-        </form>
-
     </td>
 
          <td valign='top'>
-        <form  action = "profile/editData" method="post">
+
             <table>
                 <tr>
                     <td>
@@ -29,7 +25,7 @@
                     </td>
                     <td>
                         <b>
-                            <input type='text' name='name' value=<?php if(isset($data['name']))echo $data['name'];?>>
+                            <input type='text' readonly="true" name='name' value=<?php if(isset($data['name']))echo $data['name'];?>>
                         </b>
                     </td>
                 </tr>
@@ -39,13 +35,12 @@
                     </td>
                     <td>
                         <b>
-                            <input type='text' name='family' value=<?php if(isset($data['family']))echo $data['family'];?>>
+                            <input type='text' readonly="true" name='family' value=<?php if(isset($data['family']))echo $data['family'];?>>
                         </b>
                     </td>
                 </tr>
             </table>
-            <input type = 'submit' value = 'Изменить'>
-        </form>
+
          </td></tr>
  </table>
 <form  action="<?php echo URL ?>profile/addMessage/<?php echo $data['id'] ?>" method = 'post'>
@@ -54,12 +49,12 @@
 </form>
 
 <table><tr><td><b>ID</td><td><b>Message</td></tr>
-     <?php
-$i=0;
+    <?php
+    $i=0;
     $count=count($data['message'])-2;
-for($i=$count;$i>=0;$i--)
-{
-    echo '<tr><td>'.$i.'</td><td>'.$data['message'][$i].'</td></tr>';
-}
+    for($i=$count;$i>=0;$i--)
+    {
+        echo '<tr><td>'.$i.'</td><td>'.$data['message'][$i].'</td></tr>';
+    }
     ?>
 </table>

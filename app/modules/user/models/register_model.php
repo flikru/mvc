@@ -28,7 +28,7 @@ class Register_model extends Model
 
     public function DuplicateDate($login)
     {
-        $result=$this->db->select('users','login ','login = \''.$login.'\'');
+        $result=$this->db->select('users','login ',"login = '".$login."'");
         if(count($result)==0){
              return true;
         }else false;

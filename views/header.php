@@ -27,10 +27,10 @@
         <?php if (Session::get('loggedIn') == true):?>
     <a href="<?php echo URL; ?>dashboard">Сообщения</a>
     <a href="<?php echo URL; ?>profile">Профиль</a>
-        <?php if (Session::get('role') == 'owner'):?>
+        <?php //if (Session::get('role') == 'owner'):?>
     <a href="<?php echo URL; ?>user">Пользователи</a>
         <?php
-    endif;
+    //endif;
     ?>
 
     <a href="<?php echo URL; ?>dashboard/logout">Выйти</a>
@@ -38,10 +38,6 @@
     <a href="<?php echo URL; ?>login">Войти</a>
     <?php endif; ?>
 	<a href="<?php echo URL; ?>test">Тест</a>
-
-    <?php if(isset($_SESSION['login']))echo 'Привет, '.$_SESSION['login'].'!';
-
-    ?>
 
     </div>
 

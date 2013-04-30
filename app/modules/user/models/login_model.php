@@ -11,21 +11,23 @@ class Login_Model extends Model
         $login=$_POST['login'];
         $password = md5($_POST['password']);
 
-        $data=$this->db->select('users','id,login,avatar,role','login=\''.$login.'\' AND password = \''.$password.'\'','fetch');
+        $data=$this->db->select('users','id,login,avatar,role',"login='".$login."' AND password = '".$password."'",'fetch');
 
         if ($data !=false) {
             // login
             Session::init();
+            Session::set('id',$data['id']);
             Session::set('login',$data['login']);
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             return true;
 
         } else {
-            header('location: ../login');
+            return false;
         }
 
     }
+
 
 }
 ?>
