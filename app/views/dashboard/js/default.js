@@ -1,13 +1,13 @@
 $(function() {
 
     $.get('dashboard/xhrGetListings', function(o) {
-          alert('gasgasg');
+
         for (var i = 0; i < o.length; i++)
         {
             $('#listInserts').append('<div>' + o[i].text + '<a class="del" rel="'+o[i].id+'" href="#">X</a></div>');
         }
 
-        $('.del').live('click', function() {
+        $('.del').on('click', function() {
             delItem = $(this);
             var id = $(this).attr('rel');
 

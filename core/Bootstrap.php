@@ -1,4 +1,3 @@
-<meta charset='utf8'>
 <?php
 class Bootstrap {
     public static $db;

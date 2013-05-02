@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 	require 'core/Controller.php';
 	require 'core/Database.php';
 	require 'core/Model.php';
