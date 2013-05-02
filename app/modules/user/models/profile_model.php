@@ -62,7 +62,7 @@ class Profile_Model extends Model
     } */
 
     public function addMessage($id){
-        $this->db->insert('message',array('id_who'=>Session::get('id'),'id_whom'=>$id,'text'=>$_POST['msg'],'date'=>'2010-01-01'));
+        $this->db->insert('message',array('id_who'=>Session::get('id'),'id_whom'=>$id,'text'=>$_POST['msg'],'date'=>date( 'Y-m-d h:i:s', time() )));
 
         if($id==Session::get('id'))
             header('location:'.URL.'profile');

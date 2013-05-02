@@ -28,7 +28,6 @@ class Dashboard extends Controller {
 
         function xhrInsert(){
             $this->model->xhrInsert();
-
         }
 
     function xhrGetListings(){

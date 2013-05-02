@@ -53,11 +53,11 @@
     <input type = 'submit' value = 'OK'>
 </form>
 
-    <table><tr><td><b>ID-отправителя</td><td><b>Сообщение</td></tr>
+<table><tr><td><b>ID-отправителя</td><td><b>Сообщение</td><td><b>Время</td></tr>
     <?php
     $msg=$data['message'];
     foreach($msg as $item)
-        echo '<tr><td>'.$item['id_who'].'</td><td>'.$item['text'].'</td></tr>';
+        echo '<tr><td><center>'.$item['id_who'].'</center></td><td>'.$item['text'].'</td><td>'.$item['date'].'</td></tr>';
 
     ?>
 </table>
