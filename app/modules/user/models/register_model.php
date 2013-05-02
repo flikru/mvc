@@ -39,7 +39,6 @@ class Register_model extends Model
         if($result==true)
         foreach($data as $value)
         {
-            echo $value;
                 if(!empty($value) and Validator::Validate(array($value,'minLength:4','maxLength:10'))==true);
 
             else

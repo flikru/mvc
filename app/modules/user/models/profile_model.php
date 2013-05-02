@@ -7,15 +7,6 @@ class Profile_Model extends Model
     }
 
 
-   /* public function getData(){
-        if($_SESSION['loggedIn']==true){
-            $login = $_SESSION['login'];
-            $data=$this->db->select('users','id,login,role,avatar,name,family,message',"login='".$login."'",'fetch');
-            $data['message']=explode('||',$data['message']);
-            return $data;
-        }
-    }  */
-
     public function getData($id){
         if($_SESSION['loggedIn']==true){
 
@@ -44,22 +35,6 @@ class Profile_Model extends Model
 
     }
 
-    /*
-     * public function addMessage($id){
-
-        $sql=$this->db->select('users','id,message',"id='".$id."'",'fetch');
-            $message='';
-        $msg=explode('||',$sql['message']);
-            foreach($msg as $value)
-                if($value!='')
-                $message=$message.$value."||";
-        $message=$message.$_POST['msg'].'||';
-        $this->db->update('users',array('message'=>$message), "id = ".$id);
-        if($id==Session::get('id'))
-            header('location:'.URL.'profile');
-        else
-        header('location:'.URL.'profile/show/'.$id);
-    } */
 
     public function addMessage($id){
         $this->db->insert('message',array('id_who'=>Session::get('id'),'id_whom'=>$id,'text'=>$_POST['msg'],'date'=>date( 'Y-m-d h:i:s', time() )));
