@@ -1,10 +1,10 @@
 <?php
 class Controller{
 
-    function __construct(){
-
-    }
-
+    /**
+     * Загрузка модели контроллером
+     * @param $name string Имя подключаемой модели
+     */
     public function loadModel($name){
 
         if(Bootstrap::$useModule==null)
@@ -18,6 +18,12 @@ class Controller{
         }
     }
 
+    /**
+     * Отрисовка на экран всех элементов
+     * @param $name string Имя представления
+     * @param null $data array Передающиеся данные для вывода на страницу
+     * @param bool $noInclude
+     */
     public function render($name,$data=null,$noInclude = false)
     {
 

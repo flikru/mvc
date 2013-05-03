@@ -1,28 +1,47 @@
 <?php
 class Database extends PDO
 {
-  public function __construct($DB_TYPE, $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS)
-    {
-        parent::__construct($DB_TYPE.':host='.$DB_HOST.';dbname='.$DB_NAME, $DB_USER, $DB_PASS);
-    }
-
-   public function insert($table, $data)
-    {
-        ksort($data);
-
-        $fieldNames = implode('`, `', array_keys($data));
-        $fieldValues = ':' . implode(', :', array_keys($data));
-
-        $sth = $this->prepare("INSERT INTO $table (`$fieldNames`) VALUES ($fieldValues)");
-
-        foreach ($data as $key => $value) {
-            $sth->bindValue(":$key", $value);
+    /**
+     * Подключение к базе данных
+     * @param $DB_TYPE string Тип базы данных
+     * @param $DB_HOST string Адрес сервера
+     * @param $DB_NAME string Имя базы данных
+     * @param $DB_USER string Имя пользователя
+     * @param $DB_PASS string Пароль
+     */
+    public function __construct($DB_TYPE, $DB_HOST, $DB_NAME, $DB_USER, $DB_PASS)
+        {
+            parent::__construct($DB_TYPE.':host='.$DB_HOST.';dbname='.$DB_NAME, $DB_USER, $DB_PASS);
         }
 
-        $sth->execute();
-    }
+        /**
+         * Вставка данных в таблицу
+         * @param $table string Имя таблицы
+         * @param $data array Вставляемые данные
+         */
+        public function insert($table, $data)
+        {
+            ksort($data);
 
-         public function update($table, $data, $where)
+            $fieldNames = implode('`, `', array_keys($data));
+            $fieldValues = ':' . implode(', :', array_keys($data));
+
+            $sth = $this->prepare("INSERT INTO $table (`$fieldNames`) VALUES ($fieldValues)");
+
+            foreach ($data as $key => $value) {
+                $sth->bindValue(":$key", $value);
+            }
+
+            $sth->execute();
+        }
+
+        /**
+         * Обновление таблицы
+         * @param $table string Имя таблицы
+         * @param $data array Вставляемые данные
+         * @param $where string Условие
+         */
+        public function update($table, $data, $where)
         {
              ksort($data);
 
@@ -41,14 +60,15 @@ class Database extends PDO
         $sth->execute();
         }
 
-    /**
-     * @param $table Имя таблицы
-     * @param $fields Список полей по которым требуется выборка
-     * @param null $where Условие выборки
-     * @param string $typeOut Тип выдаваемого ответа(fetch/fetchAll)
-     * @return array|mixed
-     */
-    public function select($table,$fields,$where=null,$typeOut='fetchAll'){
+        /**
+         * Выборка данных
+         * @param $table string Имя таблицы
+         * @param $fields array/string Список полей по которым требуется выборка
+         * @param null $where string Условие выборки
+         * @param string $typeOut string Тип выдаваемого ответа(fetch/fetchAll)
+         * @return array|mixed
+         */
+        public function select($table,$fields,$where=null,$typeOut='fetchAll'){
             if(is_array($fields)){
                 $field= '`'.implode('`, `', array_keys($fields)).'`';
             }else

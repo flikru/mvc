@@ -1,8 +1,11 @@
 <?php
 class Model {
 
-        function __construct() {
-    $db=Bootstrap::$db;
+    /**
+     * Подключение к базе данных
+     */
+    function __construct() {
+            $db=Bootstrap::$db;
 
             $this->db = new Database(
                 $db['DB_TYPE'],
@@ -11,6 +14,6 @@ class Model {
                 $db['DB_USER'],
                 $db['DB_PASS']
             );
-            }
+        }
 }
 ?>

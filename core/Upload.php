@@ -5,7 +5,8 @@ class Upload {
     private $FILES;
     private $allowedType = array("jpg", "gif", "bmp", "jpeg", "png", "pps","doc","docx","xls","pdf","txt","rar","zip");
     private $errors;
-    private $errorsMessage = array(1 => "Размер загружаемого файла превышает допустимый размер.",
+    private $errorsMessage = array(
+        1 => "Размер загружаемого файла превышает допустимый размер.",
         2 => "Размер загружаемого файла превышает допустимый размер.",
         3 => "Файл был загружен лишь частично.",
         4 => "Файл не был загружен.",
@@ -13,16 +14,26 @@ class Upload {
         7 => "Файл не был загружен.",
         8 => "Файл не был загружен.");
 
+    /**
+     * Определение загружаемого каталога в конструкторе
+     * @param $dir Имя директории
+     */
     function __construct($dir) {
         self::$dir = $dir;
     }
 
-
+    /**
+     * Определение загружаемого каталога с помощью функции
+     * @param $dir Имя директории
+     */
     function setDir($dir='') {
         self::$dir = $dir;
     }
 
-
+    /**
+     * Переприсвоение списка разрешенных форматов данных
+     * @param $type array/string Список форматов
+     */
     function setAllowedType($type) {
         if (is_array($type)) {
             $this->allowedType = $type;
@@ -31,6 +42,11 @@ class Upload {
         }
     }
 
+    /**
+     * Добавление к уже существующим форматам новых типов данных
+     * @param $type array/string Список форматов
+     * @return array|bool
+     */
     function addAllowedType($type) {
         if (is_array($type)) {
             foreach($type as $value)
@@ -41,7 +57,12 @@ class Upload {
     }
 
 
-
+    /**
+     * Загрузка файла
+     * @param $tmpName string Временное имя
+     * @param $name Имя
+     * @return bool|string Возвращает имя загруженного файла
+     */
     private function upload($tmpName, $name) {
         $name = $this->substitute($name);
 
@@ -54,6 +75,11 @@ class Upload {
         return false;
     }
 
+    /**
+     * Основной метод загрузки файлов
+     * @param $FILES array Массив с данными о файлах
+     * @return bool|string Возвращает выполненый метод загрузки
+     */
     function uploads($FILES) {
         $this->FILES = $FILES;
         if (!is_array($this->FILES['name'])) {
@@ -64,7 +90,8 @@ class Upload {
     }
 
     /**
-     * загрузка одного файла
+     * Загрузка одного файла
+     * @return bool|string
      */
     function uploadsOneFile() {
 
@@ -81,7 +108,8 @@ class Upload {
     }
 
     /**
-     * загрузка нескольких файлов
+     * Загрузка нескольких файлов
+     * @return bool
      */
     function uploadsManyFiles() {
         $coutFiles = count($this->FILES['name']);
@@ -103,7 +131,9 @@ class Upload {
     }
 
     /**
-     * проверяем, разрешен ли данный файл к загрузке
+     * Проверка расширение файла на допустимость его к загрузке
+     * @param $fileName string Имя файла
+     * @return bool Возвращает успешность выполнения
      */
     function typeChecking($fileName) {
         $nameEnd = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -116,7 +146,9 @@ class Upload {
     }
 
     /**
-     * ищет в каталоге файлы с таким же названием дописывает номер(равный количеству файлов с таким названием) в конец
+     * Присвоение файлу рандомное имя
+     * @param $name string Имя файла
+     * @return string
      */
     function substitute($name) {
         $nameEnd = pathinfo($name, PATHINFO_EXTENSION);
@@ -124,14 +156,16 @@ class Upload {
     }
 
     /**
-     * возвращаем информацию о файле
+     * Возвращает информацию о файле
+     * @return mixed
      */
     function getFilesInfo() {
         return $this->FILES;
     }
 
     /**
-     * возвращаем ошибки
+     * Возвращает ошибки
+     * @return mixed
      */
     public function errors() {
         return $this->errors;
