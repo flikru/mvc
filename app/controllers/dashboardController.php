@@ -27,7 +27,9 @@ class Dashboard extends Controller {
 
 
         function xhrInsert(){
+            if(!empty($_POST['text']))
             $this->model->xhrInsert();
+
         }
 
     function xhrGetListings(){

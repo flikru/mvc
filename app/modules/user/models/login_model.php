@@ -13,7 +13,7 @@ class Login_Model extends Model
 
         $data=$this->db->select('users','id,login,avatar,role',"login='".$login."' AND password = '".$password."'",'fetch');
 
-        if ($data !=false) {
+        if ($data!=false) {
             // login
             Session::init();
             Session::set('id',$data['id']);
@@ -21,7 +21,6 @@ class Login_Model extends Model
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             return true;
-
         } else {
             return false;
         }

@@ -14,15 +14,11 @@ class Register_model extends Model
                 $result = $this->rightData($_POST);
                 if($result==true){
                     $this->register($_POST);
-                    Session::init();
-                    Session::set('login',$_POST['login']);
-                    Session::set('role','default');
-                    Session::set('loggedIn',true);
-                    header('location: ../profile');
+                    header('location: ../login');
                 }
                     else
                 {
-                    header('location: ../register');
+                    header('location: ../login');
                 }
     }
 

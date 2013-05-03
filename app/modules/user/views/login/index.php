@@ -4,3 +4,6 @@
         <label>Пароль</label><input type='password' name='password'>  <br>
         <label></label><input type='submit'>
     </form>
+<?php
+
+?>

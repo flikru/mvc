@@ -41,7 +41,14 @@ class Database extends PDO
         $sth->execute();
         }
 
-        public function select($table,$fields,$where=null,$typeOut='fetchAll'){
+    /**
+     * @param $table Имя таблицы
+     * @param $fields Список полей по которым требуется выборка
+     * @param null $where Условие выборки
+     * @param string $typeOut Тип выдаваемого ответа(fetch/fetchAll)
+     * @return array|mixed
+     */
+    public function select($table,$fields,$where=null,$typeOut='fetchAll'){
             if(is_array($fields)){
                 $field= '`'.implode('`, `', array_keys($fields)).'`';
             }else

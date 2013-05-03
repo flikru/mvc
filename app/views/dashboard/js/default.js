@@ -11,11 +11,10 @@ $(function() {
             delItem = $(this);
             var id = $(this).attr('rel');
 
-            $.post('dashboard/xhrDeleteListing', {'id': id}, function(o) {
+            $.post('dashboard/xhrDeleteListing', {'id': id}).done(function(){
                 delItem.parent().remove();
-            }, 'json');
+            });
 
-            return false;
         });
 
     }, 'json');
