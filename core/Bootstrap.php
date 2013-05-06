@@ -8,6 +8,9 @@ class Bootstrap {
     public static $useMethod=null;
     public static $_config;
 
+    /**
+     * Загрузка всей модели, контроллирование и управление MVC
+     */
     function __construct() {
         $url=$this->getUrl();
         $this->_config=$this->getConfig();
@@ -35,6 +38,11 @@ class Bootstrap {
         $this->getAction($url,$controller);
     }
 
+    /**
+     * Загрузка действия
+     * @param $url string Массив из URL
+     * @param $controller Объект контроллера
+     */
     public function getAction($url,$controller){
 
         if (isset($url[2])) {
@@ -60,6 +68,10 @@ class Bootstrap {
 
     }
 
+    /**
+     * Загрузка модуля и контроллера
+     * @param $url string Массив из URL
+     */
     public function loadController($url){
         $fileLoad = 'app/controllers/' . $url[0] . 'Controller.php';
 
@@ -80,6 +92,10 @@ class Bootstrap {
             }
     }
 
+    /**
+     * Получение конфигурации
+     * @return mixed
+     */
     public function getConfig(){
         $this->_config = require 'config.php';
         $this->modules=$this->_config['Modules'];
@@ -87,6 +103,10 @@ class Bootstrap {
         return $this->_config;
     }
 
+    /**
+     * Получаение URL и преобразование ее в массив
+     * @return array|null|string
+     */
     public function getUrl(){
         $url = isset($_GET['url']) ? $_GET['url'] : null;
         $url = rtrim($url, '/');
@@ -94,6 +114,11 @@ class Bootstrap {
         return $url;
     }
 
+    /**
+     * Получание списка модулей, используемого модуля, контроллера и метода
+     * @static
+     * @return array
+     */
     public static function info(){
         $info['modulelist']=self::$listModule;
         $info['usemodule']=self::$useModule;
@@ -102,6 +127,12 @@ class Bootstrap {
         return $info;
     }
 
+    /**
+     * Вызов ошибки в случае не существования Метода или Контроллера
+     * @param $error string Ошибка
+     * @param $type string Тип ошибки
+     * @return bool
+     */
     function error($error,$type) {
         require 'app/controllers/errorController.php';
         $controller = new Error();
