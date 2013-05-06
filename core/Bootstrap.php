@@ -1,11 +1,32 @@
 <?php
 class Bootstrap {
+    /**
+     * @var Свойства базы данных
+     */
     public static $db;
+    /**
+     * @var bool Существование ошибки
+     */
     public static $ok=false;
+    /**
+     * @var array Список модулей в системе
+     */
     public static $listModule;
+    /**
+     * @var null Используемый модуль
+     */
     public static $useModule=null;
+    /**
+     * @var null Используемый контроллер
+     */
     public static $useController=null;
+    /**
+     * @var null Используемый метод
+     */
     public static $useMethod=null;
+    /**
+     * @var mixed Массив конфигурации
+     */
     public static $_config;
 
     /**
