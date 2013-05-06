@@ -6,3 +6,6 @@
 
 </body>
 </html>
+    <?php
+        var_dump(Bootstrap::info());
+    ?>

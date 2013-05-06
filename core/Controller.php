@@ -1,6 +1,8 @@
 <?php
 class Controller{
+      function __construct(){
 
+      }
     /**
      * Загрузка модели контроллером
      * @param $name string Имя подключаемой модели
